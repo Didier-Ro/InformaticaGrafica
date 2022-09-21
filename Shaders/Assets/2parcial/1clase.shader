@@ -23,7 +23,8 @@ Shader "1clase/Normal"
         void surf (Input IN, inout SurfaceOutput o)
         {
             o.Albedo = tex2D(_MainTex, IN.uv_MainTex);
-            o.Normal.r = UnpackNormal(tex2D(_NormalMap, IN.uv_NormalMap)) *_Range;
+            o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_NormalMap));
+            o.Normal *= float3(_Range, _Range,1);
         }
         ENDCG
     }
