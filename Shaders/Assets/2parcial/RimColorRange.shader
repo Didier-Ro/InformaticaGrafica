@@ -26,7 +26,7 @@ Shader "RimColorRange/ColorRange"
             half dotp = 1-saturate(dot(IN.worldRefl, o.Normal));
                               //R   G     b
             o.Emission = (_Color * dotp) * _Range * _Range;
-            o.Albedo.rgb = 1;
+            o.Albedo.rgb = 0;
         }
         ENDCG
     }
