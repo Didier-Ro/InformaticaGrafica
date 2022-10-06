@@ -11,10 +11,12 @@ Shader "Miercoles/CubeMapMiercoles"
     {
         CGPROGRAM
         #pragma surface surf Lambert
+        
         float4 _Color;
         sampler2D _MainTex;
         samplerCUBE _Cube;
         half _Range;
+        
         struct Input
         {
             float2 uv_MainTex;
