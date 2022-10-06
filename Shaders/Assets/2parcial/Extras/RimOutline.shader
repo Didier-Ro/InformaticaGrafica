@@ -23,7 +23,7 @@ Shader "RimOutline/Outline"
             half rim = 1 - saturate(dot(IN.viewDir, o.Normal));
             //o.Emission = fract(rim * _RimPower);
                           //condition // verdadero // falso
-            o.Emission = rim > 0.7? float3(1,1,0):
+            o.Emission = rim > 0.7? float3(1,1,0): //Las condiciones permiten manipular el grosos y el color del rim
                          rim > 0.6? float3(1,0,1):
                          rim > 0.5? float3(0,1,0):
                          rim > 0.4? float3(0,1,1):

@@ -23,9 +23,9 @@ Shader "RimColorRange/ColorRange"
 
         void surf (Input IN, inout SurfaceOutput o)
         {
-            half dotp = 1-saturate(dot(IN.worldRefl, o.Normal));
+            half dotp = 1-saturate(dot(IN.worldRefl, o.Normal)); //Cambiamos viewDir po worldRefl para que el objeto sea reflejante
                               //R   G     b
-            o.Emission = (_Color * dotp) * _Range * _Range;
+            o.Emission = (_Color * dotp) * _Range * _Range; // Multiplicamos por el rango para poder manipular la intensidad
             o.Albedo.rgb = 0;
         }
         ENDCG

@@ -9,10 +9,10 @@ Shader "clase3/Alpha"
     SubShader
     {
         ZWrite off
-        Tags{"RenderType" = "Transparent"}
+        Tags{"RenderType" = "Transparent"} //Cambiamos el tipo de render a transparente
         CGPROGRAM
         
-        #pragma surface surf Lambert alpha
+        #pragma surface surf Lambert alpha //Nos permite utilizar el canal alfa del color
 
         sampler2D _MainTex;
         float4 _Color;

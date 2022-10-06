@@ -27,8 +27,8 @@ Shader "RimTexture/Texture"
         {
             half dotp = 1-saturate(dot(IN.viewDir, o.Normal));
                               //R   G     b
-            o.Emission = (_Color * dotp) * _Range;
-            o.Albedo = tex2D(_MainTex, IN.uv_MainTex * _Range);
+            o.Emission = (_Color * dotp) * _Range; //Permite seleccionar el color del contorno y la intesidad con que se verá
+            o.Albedo = tex2D(_MainTex, IN.uv_MainTex * _Range); //Modifica el tiling de la textura
         }
         ENDCG
     }

@@ -19,7 +19,7 @@ Shader "clase2/practica2"
         void surf (Input IN, inout SurfaceOutput o)
         {
             o.Emission = texCUBE(_Cube, IN.worldRefl);
-            o.Albedo.gb = texCUBE(_Cube, IN.worldRefl.b);
+            o.Albedo.gb = texCUBE(_Cube, IN.worldRefl.b);//Usamos el cubemap en el albedo combinando los canales de color que crean un azul turquesa 
         }
         ENDCG
     }
