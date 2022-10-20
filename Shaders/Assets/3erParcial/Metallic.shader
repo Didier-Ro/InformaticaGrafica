@@ -26,8 +26,8 @@ Shader "Metallic/p2"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
            o.Albedo = _Color.rgb;
-           o.Smoothness = tex2D(_MetallicTex, IN.uv_MetallicTex).rgb;
-           o.Metallic = _Metallic; 
+           o.Metallic = tex2D(_MetallicTex, IN.uv_MetallicTex) * _Metallic;
+           o.Smoothness = 0.5; 
         }
         ENDCG
     }
