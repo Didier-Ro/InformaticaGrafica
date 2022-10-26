@@ -28,7 +28,6 @@ Shader "Parcial3/PBR"
             float2 uv_MainTex;
             float2 uv_MetallicTex;
             float2 uv_NormalMap;
-            float2 uv_AOTex;
             float2 uv_Smootness;
         };
        
@@ -40,7 +39,7 @@ Shader "Parcial3/PBR"
             o.Albedo = tex2D(_MainTex, IN.uv_MainTex);
             o.Metallic = tex2D(_MetallicTex, IN.uv_MetallicTex) * _Metallic;
             o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_NormalMap));
-            o.Occlusion = tex2D(_AmbientOcclusion, IN.uv_AOTex) * _Occlusion;
+            o.Occlusion = tex2D(_AmbientOcclusion, IN.uv_MainTex) * _Occlusion;
             o.Smoothness = tex2D(_Smootness, IN.uv_Smootness);
         }
         ENDCG
