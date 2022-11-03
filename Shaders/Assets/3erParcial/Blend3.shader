@@ -6,15 +6,17 @@ Shader "Parcial3/Blend2"
     }
     SubShader
     {
-        Tags { "Queue" = "AlphaTest" }
+        Tags { "Queue" = "Transparent" }
+        Cull off
         //o.Alpha = c.a
         //Blend SrcAlpha OneMinusSrcAlpha
-        Blend One OneMinusSrcAlpha
+        Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {
             ZWrite Off
-            ColorMask GGA
+            ColorMask G
             SetTexture[_MainTex]{combine texture}
         }
+       
     }
 }

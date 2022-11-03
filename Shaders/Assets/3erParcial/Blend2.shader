@@ -10,7 +10,7 @@ Shader "Parcial3/Blend2"
         Tags { "Queue" = "AlphaTest" }
         //o.Alpha = c.a
         //Blend SrcAlpha OneMinusSrcAlpha
-        Blend One OneMinusSrcAlpha
+        Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {
             ZWrite On
