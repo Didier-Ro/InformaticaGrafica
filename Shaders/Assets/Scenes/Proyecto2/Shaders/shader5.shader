@@ -1,28 +1,42 @@
-Shader "Proyecto2/shader5" {
-    Properties {
-      _MainTex ("Texture", 2D) = "white" {}
-      _BumpMap ("Bumpmap", 2D) = "bump" {}
-      _Detail ("Detail", 2D) = "gray" {}
-    }
+Shader "Proyecto2/shader5" 
+{
+
     SubShader {
-      Tags { "RenderType" = "Opaque" }
-      CGPROGRAM
-      #pragma surface surf Lambert
-      struct Input {
-          float2 uv_MainTex;
-          float2 uv_BumpMap;
-          float2 uv_Detail;
-      };
-      sampler2D _MainTex;
-      sampler2D _BumpMap;
-      sampler2D _Detail;
-      
-      void surf (Input IN, inout SurfaceOutput o) {
-          o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb;
-          o.Albedo *= tex2D (_Detail, IN.uv_Detail).rgb * 2;
-          o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
-      }
-      ENDCG
-    } 
-    Fallback "Diffuse"
-  }
+        Pass {
+            CGPROGRAM
+            #pragma vertex vert_img
+            #pragma fragment frag
+            #pragma target 3.0
+
+            #include "UnityCG.cginc"
+            
+            float4 frag(v2f_img i) : SV_Target {
+                float2 mcoord;
+                float2 coord = float2(0.0,0.0);
+                mcoord.x = ((1.0-i.uv.x)*3.5)-2.5;
+                mcoord.y = (i.uv.y*2.0)-1.0;
+                float iteration = 0.0;
+                const float _MaxIter = 29.0;
+                const float PI = 3.14159;
+                float xtemp;
+                for ( iteration = 0.0; iteration < _MaxIter; iteration += 1.0) {
+                    if ( coord.x*coord.x + coord.y*coord.y > 2.0*(cos(fmod(_Time.y,2.0*PI))+1.0) )
+                    break;
+                    xtemp = coord.x*coord.x - coord.y*coord.y + mcoord.x;
+                    coord.y = 2.0*coord.x*coord.y + mcoord.y;
+                    coord.x = xtemp;
+                }
+                float val = fmod((iteration/_MaxIter)+_Time.x,1.0);
+                float4 color;
+
+                color.r = clamp((3.0*abs(fmod(2.0*val,1.0)-0.5)),0.0,1.0);
+                color.g = clamp((3.0*abs(fmod(2.0*val+(1.0/3.0),1.0)-0.5)),0.0,1.0);
+                color.b = clamp((3.0*abs(fmod(2.0*val-(1.0/3.0),1.0)-0.5)),0.0,1.0);
+                color.a = 1.0;
+                
+                return color;
+            }
+            ENDCG
+        }
+    }
+}
