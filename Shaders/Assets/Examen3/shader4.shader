@@ -1,22 +1,20 @@
-Shader "Parcial3/Blend3"
+Shader "Examen3/shader4"
 {
-    Properties
+   Properties
     {
         _MainTex ("Albedo (RGB)", 2D) = "black" {}
+         _AOTex("AO", 2D) = "white" {}
     }
     SubShader
     {
-        Tags { "Queue" = "Transparent" }
-        Cull off
-        //o.Alpha = c.a
-        //Blend SrcAlpha OneMinusSrcAlpha
+        Tags { "Queue" = "Geometry" }
         Blend SrcAlpha OneMinusSrcAlpha
         Pass
         {
             ZWrite Off
-            ColorMask G
+            ColorMask RGB
             SetTexture[_MainTex]{combine texture}
+            SetTexture[_AOTex]{combine texture * previous}
         }
-       
     }
 }

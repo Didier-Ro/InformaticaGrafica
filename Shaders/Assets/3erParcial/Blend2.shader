@@ -10,11 +10,11 @@ Shader "Parcial3/Blend2"
         Tags { "Queue" = "AlphaTest" }
         //o.Alpha = c.a
         //Blend SrcAlpha OneMinusSrcAlpha
-        Blend SrcAlpha OneMinusSrcAlpha
+        Blend One OneMinusSrcAlpha
         Pass
         {
             ZWrite On
-            ColorMask GR
+            ColorMask RG
             SetTexture[_MainTex]{combine texture}
             SetTexture[_Normal]{combine texture * previous}
         }
