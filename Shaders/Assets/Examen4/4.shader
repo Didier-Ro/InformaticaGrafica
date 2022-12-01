@@ -1,4 +1,4 @@
-Shader "4toParc/WavesBasic" {
+Shader "Examen/4" {
     Properties {
       _MainTex("Diffuse", 2D) = "white" {}
       _Tint("Colour Tint", Color) = (1,1,1,1)
@@ -31,8 +31,8 @@ Shader "4toParc/WavesBasic" {
       void vert (inout appdata v, out Input o) {
           UNITY_INITIALIZE_OUTPUT(Input,o);
           float t = _Time * _Speed;
-          float waveHeight = cos(t + (v.vertex.x * v.vertex.z) * _Amp) * _Amp;
-          v.vertex.y = (v.vertex.y * v.vertex.z) + waveHeight;
+          float waveHeight = cos(t + (v.vertex.x * v.vertex.z + _Amp)) * _Amp;
+          v.vertex.y = (v.vertex.y * v.vertex.z * 5) + waveHeight;
           v.normal = normalize(float3(v.normal.x, v.normal.y, v.normal.z));
           o.vertColor = waveHeight + 1;
       }
