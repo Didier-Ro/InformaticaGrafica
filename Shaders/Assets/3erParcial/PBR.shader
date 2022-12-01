@@ -26,9 +26,7 @@ Shader "Parcial3/PBR"
         struct Input
         {
             float2 uv_MainTex;
-            float2 uv_MetallicTex;
             float2 uv_NormalMap;
-            float2 uv_Smootness;
         };
        
         half _Metallic;
@@ -37,10 +35,10 @@ Shader "Parcial3/PBR"
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             o.Albedo = tex2D(_MainTex, IN.uv_MainTex);
-            o.Metallic = tex2D(_MetallicTex, IN.uv_MetallicTex) * _Metallic;
+            o.Metallic = tex2D(_MetallicTex, IN.uv_MainTex) * _Metallic;
             o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_NormalMap));
             o.Occlusion = tex2D(_AmbientOcclusion, IN.uv_MainTex) * _Occlusion;
-            o.Smoothness = tex2D(_Smootness, IN.uv_Smootness);
+            o.Smoothness = tex2D(_Smootness, IN.uv_MainTex);
         }
         ENDCG
     }

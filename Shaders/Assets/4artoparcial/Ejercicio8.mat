@@ -64,7 +64,7 @@ Material:
     - _DstBlend: 0
     - _ExtrudeX: 0
     - _ExtrudeY: 0
-    - _ExtrudeZ: 0
+    - _ExtrudeZ: -0.13
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

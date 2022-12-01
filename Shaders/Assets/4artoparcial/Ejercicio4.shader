@@ -37,8 +37,8 @@ Shader "Unlit/Ejercicio4"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                o.uv.x = tan(o.uv.y + 10) / 2;
-                o.uv.y = tan(o.uv.x + 10) / 2;
+                o.uv.x = tan(o.uv.y + 10)/2;
+                o.uv.y = tan(o.uv.x + 10)/2;
                 return o;
             }
 
